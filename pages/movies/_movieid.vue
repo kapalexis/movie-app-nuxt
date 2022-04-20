@@ -3,11 +3,14 @@
   <Loading v-if="$fetchState.pending" />
 
   <!-- Movie Info -->
-  <div v-else class="single-movie container">
-    <NuxtLink class="button" :to="{ name: 'index' }">
+  <div v-else class="single-movie container m-0 flex flex-col">
+    <div class="w-screen bg-red-800 h-24">
+      test
+    </div>
+    <NuxtLink class="button m-8" :to="{ name: 'index' }">
       Revenir en arrière
     </NuxtLink>
-    <div class="movie-info">
+    <div class="movie-info p-8">
       <div class="movie-img">
         <img
           :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -82,11 +85,6 @@ export default {
 <style lang="scss">
 .single-movie {
   color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 32px 16px;
   .button {
     align-self: flex-start;
     margin-bottom: 32px;
