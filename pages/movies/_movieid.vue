@@ -4,10 +4,15 @@
 
   <!-- Movie Info -->
   <div v-else class="single-movie container m-0 flex flex-col">
-    <div class="w-screen bg-red-800 h-24">
-      test
-    </div>
-    <NuxtLink class="button m-8" :to="{ name: 'index' }">
+    <video-player
+      :src="`https://www.youtube.com/watch?v=${ytVideoId}`"
+    />
+    <NuxtLink
+      class="
+      button
+      m-8"
+      :to="{ name: 'index' }"
+    >
       Revenir en arrière
     </NuxtLink>
     <div class="movie-info p-8">
@@ -54,18 +59,24 @@
 
 <script>
 import axios from 'axios';
-import Loading from '../../components/Loading.vue';
+import VideoPlayer from 'nuxt-video-player';
+
+require('nuxt-video-player/src/assets/css/main.css');
 
 export default {
   name: 'SingleMovie',
-  components: { Loading },
+  components: {
+    VideoPlayer,
+  },
   data() {
     return {
       movie: '',
+      ytVideoId: '',
     };
   },
   async fetch() {
     await this.getMovieInfos();
+    await this.getYtVideoId();
   },
   head() {
     return {
@@ -78,7 +89,14 @@ export default {
       const result = await data;
       this.movie = result.data;
     },
+    async getYtVideoId() {
+      const data = axios.get(`https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/videos?api_key=ad7399fec8dfdb5f2a5a29d4d3c11e0d&language=fr-FR`);
+      const result = await data;
+      this.ytVideoId = result.data.results[0].key;
+      console.log('ytvideoid', this.ytVideoId);
+    },
   },
+
 };
 </script>
 
