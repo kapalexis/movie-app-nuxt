@@ -128,12 +128,13 @@ export default {
       this.searchedMovies = [];
     },
     async searchMovies() {
+      this.searchedMovies = [];
       const data = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=ad7399fec8dfdb5f2a5a29d4d3c11e0d&language=fr-FR&page=1&include_adult=false&query=${this.searchInput}`);
       const result = await data;
       result.data.results.forEach((movie) => {
         this.searchedMovies.push(movie);
       });
-      console.log(this.searchedMovies);
+      console.log('ma recherche', this.searchedMovies);
     },
   },
 };
