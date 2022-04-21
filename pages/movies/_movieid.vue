@@ -4,9 +4,7 @@
 
   <!-- Movie Info -->
   <div v-else class="single-movie container m-0 flex flex-col">
-    <video-player
-      :src="`https://www.youtube.com/watch?v=${ytVideoId}`"
-    />
+    <vue-youtube-player :video-id="ytVideoId" player-width="100%" />
     <NuxtLink
       class="
       button
@@ -59,14 +57,10 @@
 
 <script>
 import axios from 'axios';
-import VideoPlayer from 'nuxt-video-player';
-
-require('nuxt-video-player/src/assets/css/main.css');
 
 export default {
   name: 'SingleMovie',
   components: {
-    VideoPlayer,
   },
   data() {
     return {

@@ -21,6 +21,8 @@
 .app {
   background-color: #211f1f;
   min-height: 100vh;
+  display:flex;
+  justify-content: center;
 }
 
 .button {
