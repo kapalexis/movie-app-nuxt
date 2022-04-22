@@ -60,8 +60,7 @@ import axios from 'axios';
 
 export default {
   name: 'SingleMovie',
-  components: {
-  },
+
   data() {
     return {
       movie: '',

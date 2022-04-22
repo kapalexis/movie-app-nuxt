@@ -24,5 +24,6 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 1,
     'vue/max-len': 0,
+    'no-unused-vars': 'off',
   },
 };

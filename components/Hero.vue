@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div class="hero z-0">
     <img src="../assets/imgs/movieHero.jpeg" alt="">
     <div class="text-container">
       <div class="text">

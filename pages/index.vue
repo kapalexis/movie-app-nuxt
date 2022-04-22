@@ -83,22 +83,36 @@
             >
               Plus d'informations
             </NuxtLink>
+            <button ref="preview" class="button" @click="openModal(movie)">
+              Trailer
+            </button>
           </div>
         </div>
       </div>
     </div>
+    <ModalPreview
+      v-if="showModal"
+      :movie="modalInfos"
+      :video-id="videoId"
+      @close-modal="showModal = false"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import ModalPreview from '../components/ModalPreview.vue';
 
 export default {
+  components: { ModalPreview },
   data() {
     return {
       movies: [],
       searchInput: '',
       searchedMovies: [],
+      showModal: false,
+      modalInfos: [],
+      videoId: '',
     };
   },
   async fetch() {
@@ -114,14 +128,13 @@ export default {
     };
   },
   methods: {
-
     async getMovies() {
       const data = axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=ad7399fec8dfdb5f2a5a29d4d3c11e0d&language=fr-FR&page=1');
       const result = await data;
       result.data.results.forEach((movie) => {
         this.movies.push(movie);
       });
-      console.log(this.searchedMovies);
+      // console.log(this.searchedMovies);
     },
     handleClearClick() {
       this.searchInput = '';
@@ -136,6 +149,16 @@ export default {
       });
       console.log('ma recherche', this.searchedMovies);
     },
+    async openModal(movie) {
+      this.showModal = true;
+      this.modalInfos = movie;
+      const data = axios.get(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=ad7399fec8dfdb5f2a5a29d4d3c11e0d&language=fr-FR`);
+      const result = await data;
+
+      console.log('video id', result.data.results[0].key);
+      this.videoId = result.data.results[0].key;
+    },
+
   },
 };
 </script>
