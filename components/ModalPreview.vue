@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen h-screen z-50 top-0 left-0
+    class="w-screen h-screen z-50 top-0 left-0 bg-[#00000070]
   fixed flex justify-center items-center"
     @click="$emit('close-modal')"
   >
