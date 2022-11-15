@@ -1,5 +1,7 @@
 # movie-app
 
+DEMO URL : https://kasmovieapp.netlify.app/
+
 ## Build Setup
 
 ```bash
